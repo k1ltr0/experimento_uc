@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Etapa 4{% endblock %}
+
+{% block content %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+        <p>Recuerda que en la Tarea 3, resolviste correctamente {{ player.correct_answers_round_three }} suma(s).</p>
+        <p>¿Qué esquema de pago aplicarás para las sumas que resolviste en la Etapa 3?</p>
+
+        {% formfield player.round_four_mode %}
+
+    </div>
+</div>
+
+
+{% next_button %}
+
+{% endblock %}

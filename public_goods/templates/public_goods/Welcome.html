@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Introduction{% endblock %}
+
+{% block content %}
+
+<h2>Bienvenido</h2>
+<p>En el experimento de hoy, se te pedirá que completes ocho tareas diferentes. Ninguna de estas tomará más de 4 minutos. Al final del experimento, recibirás $5 por haber completado las ocho tareas. Además, seleccionaremos aleatoriamente una de las tareas y te pagaremos en función de tu desempeño en esa tarea. Una vez que hayas completado las ocho tareas, determinaremos qué tareas se contabilizarán para el pago al dibujar un número entre 1 y 8 en la pantalla. El método que utilizamos para determinar sus ganancias varía según las tareas. Antes de cada tarea, describiremos en detalle cómo se determina tu pago.</p>
+<p>Tus ingresos totales del experimento son la suma de tu pago por la tarea seleccionada al azar y tu pago de $5 por completar las tareas.</p>
+<p>Por favor, no hables con nadie en ningún momento durante el experimento. Si tienes alguna pregunta, por favor levanta tu mano.</p>
+
+
+{% next_button %}
+
+{% endblock %}

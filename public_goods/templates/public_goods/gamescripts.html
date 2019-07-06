@@ -1,0 +1,57 @@
+<script type="text/JavaScript">
+(function ($) {
+    $("input[name=correct_answers]").attr("readonly", "readonly");
+
+    var NumberGenerator = {
+        init: function(answer_input, random_numbers_render, correct_answer_container) {
+            NumberGenerator.answer_input = answer_input;
+            NumberGenerator.random_numbers_render = random_numbers_render;
+            NumberGenerator.correct_answer_container = correct_answer_container;
+
+            $(NumberGenerator.correct_answer_container).attr(
+                "readonly", "readonly"
+            );
+            NumberGenerator.initEvents();
+            NumberGenerator.generate();
+        },
+        generate: function() {
+            var random_numbers = [
+                parseInt(Math.random() * 89 + 10),
+                parseInt(Math.random() * 89 + 10),
+                parseInt(Math.random() * 89 + 10)
+            ];
+            NumberGenerator.correct_answer = random_numbers.reduce(function(a, e){
+                return a + e;
+            });
+
+            console.log(NumberGenerator.correct_answer);
+
+            // render
+            $(NumberGenerator.random_numbers_render).html(random_numbers.join(" + "));
+            $(NumberGenerator.answer_input).val("");
+        },
+        checkAnswer: function() {
+            var answer = parseInt($(NumberGenerator.answer_input).val());
+
+            // render
+            if (NumberGenerator.correct_answer === answer) {
+                var last = parseInt($(NumberGenerator.correct_answer_container).val())
+                last = isNaN(last) ? 0:last;
+                $(NumberGenerator.correct_answer_container).val(last + 1);
+            }
+        },
+        initEvents: function() {
+            $(NumberGenerator.answer_input).on('keydown', function(e) {
+                if (e.key === "Enter")
+                {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    NumberGenerator.checkAnswer();
+                    NumberGenerator.generate();
+                }
+            });
+        }
+    }
+    $.NumberGenerator = NumberGenerator;
+})(jQuery);
+</script>

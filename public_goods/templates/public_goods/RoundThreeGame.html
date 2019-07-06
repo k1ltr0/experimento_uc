@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Etapa 3{% endblock %}
+
+{% block content %}
+
+
+{% include Constants.answerinput %}
+{% formfield player.correct_answers_round_three label="Respuestas correctas:" %}
+
+{% include Constants.gamescripts %}
+
+<script type="text/JavaScript">
+$(document).ready(function() {
+    $.NumberGenerator.init(
+        "input[name=answer_input]",
+        ".random-numbers",
+        "input[name=correct_answers_round_three]"
+    );
+});
+</script>
+
+{% endblock %}

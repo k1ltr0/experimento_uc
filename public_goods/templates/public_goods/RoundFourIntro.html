@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Introduction{% endblock %}
+
+{% block content %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+
+        <h3>Etapa 4 – Envía tus Respuestas</h3>
+        <p>Para la cuarta etapa no tendrás que realizar ninguna suma adicional. Si la etapa 4 es la elegida para el pago, se te pagará por las sumas correctas que resolviste en la Etapa 3 y por la esquema de pago que elijas en esta etapa. </p>
+        <p>1. Si eliges la esquema Pago por Pregunta, recibirás $0.5 por cada suma correcta en la Etapa 3 (tu pago no se ve afectado por las respuestas incorrectas). Ten en cuenta que, en este caso, tu pago no depende del rendimiento de los otros participantes. </p>
+        <p>2. Si eliges el Torneo, tu desempeño se evaluará en relación al desempeño de los otros participantes en la Etapa 3. Si resolviste más respuestas correctas que el resto en la Etapa 3 recibirás $2 por respuesta correcta. Sin embargo, si no tuviste más respuestas correctas que el resto, recibirás $0 en esta etapa. Si hay empate, se elige al ganador al azar. </p>
+
+    </div>
+</div>
+
+
+{% next_button %}
+
+{% endblock %}

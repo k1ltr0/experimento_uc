@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Introduction{% endblock %}
+
+{% block content %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+
+        <h3>Etapa 1 – Torneo Pagado</h3>
+        <p>Para la Etapa 1, tendrás 4 minutos para calcular la suma de cuatro números de dos dígitos elegidos al azar. Tu pago por la Tarea 1 dependerá de tu desempeño en relación al resto de los participantes. Específicamente, has sido emparejado al azar con otros tres participantes que están actualmente en esta misma sala para formar un grupo de cuatro personas. Si la Etapa 1 es la tarea seleccionada al azar para el pago, tus ganancias dependerán de la cantidad de sumas que resuelvas en comparación con las otras tres personas de este grupo. La persona que resuelva correctamente el mayor número de sumas recibirá $2 por cada suma correcta, mientras que los otros participantes recibirán $ 0. Si hay empates, el ganador será determinado al azar. Nos referimos a esto como el torneo pagado.  No se informará tu desempeño en la Etapa 1 respecto al resto hasta completar las ocho etapas. ¿Hay alguna pregunta antes de comenzar?</p>
+
+    </div>
+</div>
+
+
+{% next_button %}
+
+{% endblock %}

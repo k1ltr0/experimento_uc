@@ -1,0 +1,34 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Introduction{% endblock %}
+
+{% block content %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+
+        <h3>Etapa 8 - Creencia sobre Etapa 1</h3>
+        <p>A continuación, le preguntaremos cómo crees que fue tu desempeño en la Etapa 1 en comparación con el desempeño de los otros tres participantes de tu. En la Etapa 1 obtuviste uno de los cuatro puestos dentro de tu grupo, siendo 1 el puesto más alto y 4 fue el más bajo.</p>
+        <p>Recuerda que en la Tarea 1, resolviste correctamente X suma (s).</p>
+        <p>Para cada uno de los siguientes puestos, ¿cuál es el porcentaje de probabilidad (o probabilidad de 100) de que creas que obtuviste ese puesto en la Etapa 1?</p>
+        <p>Ingresa un número entre 0 y 100 para cada puesto (no ingresos un signo de porcentaje). Los números deben sumar 100.</p>
+        1 – highest 		_____
+        2			_____
+        3			_____
+        4 – lowest		_____
+
+        Total			100
+
+        <p>Si la Etapa 6 es elegida al azar para el pago, se te pagará según la precisión de tu creencia según la siguiente fórmula: 20 - 10k=14(1{rank=k)-0.01 x Pk}2. Si bien esta fórmula puede parecer complicada, lo que significa es simple: en promedio, se paga más cuando informas honestamente tus mejores estimaciones de las probabilidades de tu posición. El rango de pago es de $0 - $20.</p>
+        <p>--------</p>
+        <p>AL AZAR SE ELIGE UNA RONDA PARA EL PAGO</p>
+        <p>MOSTRAR EL RANKING EN LA ETAPA 1, ETAPA 2 y ETAPA 3.</p>
+
+    </div>
+</div>
+
+
+{% next_button %}
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Introduction{% endblock %}
+
+{% block content %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+
+        <h3>Etapa 6 - Creencia sobre la Etapa 2 con información relevada. </h3>
+        <p>Ahora se te informará sobre tu desempeño en la Tarea 3 en comparación a uno de los otros participantes del grupo. Si recibes el mensaje "Estás rankeado mejor", significa que tu desempeño en la Etapa 3 fue mejor (es decir, tu puesto está más cercano a 1) que el desempeño del otro participante. Si recibes el mensaje "Estás clasificado más bajo", significa que tu desempeño fue inferior al del otro participante. </p>
+        <p>SE MUESTRA MENSAJE</p>
+        <p>Ahora te volvemos a preguntar cómo crees que fue tu desempeño en la Etapa 3 en comparación con el desempeño de los otros tres participantes de tu grupo. A continuación, te mostramos tu creencia declarada en la Etapa 5 antes de haber recibido la información anterior. </p>
+        <p>OPCIÓN 1: [Si el mensaje que se muestra es que estás mejor clasificado]</p>
+
+        <p>Ten en cuenta que si fuiste rankeado mejor que algún otro miembro del grupo, significa que no obtuviste el puesto más bajo (es decir, cuarto lugar) y, por lo tanto, te ubicaste en el puesto 1, 2 o 3, siendo 1 el más alto. .</p>
+        <p>Recuerda que en la Etapa 3, resolviste correctamente X suma (s).</p>
+        <p>Para cada uno de los siguientes puestos, ¿cuál es el porcentaje de probabilidad (de 0 a 100) de que creas que obtuviste ese lugar en la Etapa 3?</p>
+        <p>Ingresa un número entre 0 y 100 para cada lugar (no ingrese un signo de porcentaje). Los números en todos los lugares deben sumar hasta 100.</p>
+        Earlier Reported Belief 		Belief
+        1 – highest 			__X___			_____
+        2				__Y__				_____
+        3				__Z___			_____
+        4 – lowest			__Q___
+
+        Total								 100
+
+        <p>Si la Etapa 6 es elegida al azar para el pago, se te pagará según la precisión de tu creencia según la siguiente fórmula: 20 - 10k=14(1{rank=k)-0.01 x Pk}2. Si bien esta fórmula puede parecer complicada, lo que significa es simple: en promedio, se paga más cuando informas honestamente tus mejores estimaciones de las probabilidades de tu posición. El rango de pago es de $0 - $20.</p>
+
+        <p>OPCIÓN 2: [Si el mensaje que se muestra es que estás clasificado más bajo]</p>
+        <p>Ten en cuenta que si fuiste rankeado más bajo que algún otro miembro del grupo, significa que no obtuviste el puesto más alto (es decir, primer lugar) y, por lo tanto, te ubicaste en el puesto 2, 3 o 4, siendo 2 el más alto.</p>
+        <p>Recuerda que en la Etapa 3, resolviste correctamente X suma (s).</p>
+        <p>Para cada uno de los siguientes puestos, ¿cuál es el porcentaje de probabilidad (de 0 a 100) de que creas que obtuviste ese lugar en la Etapa 3?</p>
+        <p>Ingresa un número entre 0 y 100 para cada lugar (no ingrese un signo de porcentaje). Los números en todos los lugares deben sumar hasta 100.</p>
+        Earlier Reported Belief 		Belief
+        1 – highest 			__X___			_____
+        2				__Y__				_____
+        3				__Z___			_____
+        4 – lowest			__Q___
+
+        Total								 100
+
+        <p>Si la Etapa 6 es elegida al azar para el pago, se te pagará según la precisión de tu creencia según la siguiente fórmula: 20 - 10k=14(1{rank=k)-0.01 x Pk}2. Si bien esta fórmula puede parecer complicada, lo que significa es simple: en promedio, se paga más cuando informas honestamente tus mejores estimaciones de las probabilidades de tu posición. El rango de pago es de $0 - $20.</p>
+
+    </div>
+</div>
+
+
+{% next_button %}
+
+{% endblock %}
