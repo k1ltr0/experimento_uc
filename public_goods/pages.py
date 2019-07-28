@@ -90,8 +90,6 @@ class RoundSixIntro(Page):
     ]
 
     def vars_for_template(self):
-        # return {"total_earnings":
-        # self.group.total_contribution * Constants.multiplier}
         return {"isbetter": self.subsession.get_better_or_not(self.player)}
 
 
