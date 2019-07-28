@@ -81,7 +81,18 @@ class RoundFiveGame(Page):
 
 
 class RoundSixIntro(Page):
-    pass
+    form_model = "player"
+    form_fields = [
+        "probabilities_round_six_0",
+        "probabilities_round_six_1",
+        "probabilities_round_six_2",
+        "probabilities_round_six_3"
+    ]
+
+    def vars_for_template(self):
+        # return {"total_earnings":
+        # self.group.total_contribution * Constants.multiplier}
+        return {"isbetter": self.subsession.get_better_or_not(self.player)}
 
 
 class RoundSevenIntro(Page):

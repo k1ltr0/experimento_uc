@@ -42,6 +42,15 @@ class Subsession(BaseSubsession):
                 "max_contribution": "(no data)",
             }
 
+    def get_better_or_not(self, player):
+        others = []
+        for p in self.get_players():
+            if p.id != player.id:
+                others.append(p)
+
+        return player.correct_answers_round_three > \
+            random.choice(others).correct_answers_round_three
+
 
 class Group(BaseGroup):
     total_contribution = models.CurrencyField()
@@ -76,6 +85,11 @@ class Player(BasePlayer):
     probabilities_round_five_1 = models.IntegerField(initial=25)
     probabilities_round_five_2 = models.IntegerField(initial=25)
     probabilities_round_five_3 = models.IntegerField(initial=25)
+
+    probabilities_round_six_0 = models.IntegerField(initial=25)
+    probabilities_round_six_1 = models.IntegerField(initial=25)
+    probabilities_round_six_2 = models.IntegerField(initial=25)
+    probabilities_round_six_3 = models.IntegerField(initial=25)
 
     round_two_mode = models.StringField(
         choices=[
