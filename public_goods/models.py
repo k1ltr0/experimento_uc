@@ -48,8 +48,9 @@ class Subsession(BaseSubsession):
             if p.id != player.id:
                 others.append(p)
 
-        return player.correct_answers_round_three > \
+        player.better_or_not = player.correct_answers_round_three > \
             random.choice(others).correct_answers_round_three
+        return player.better_or_not
 
 
 class Group(BaseGroup):
@@ -86,6 +87,8 @@ class Player(BasePlayer):
     probabilities_round_five_2 = models.IntegerField(initial=25)
     probabilities_round_five_3 = models.IntegerField(initial=25)
 
+
+    better_or_not = False
     probabilities_round_six_0 = models.IntegerField(initial=25)
     probabilities_round_six_1 = models.IntegerField(initial=25)
     probabilities_round_six_2 = models.IntegerField(initial=25)
@@ -100,6 +103,14 @@ class Player(BasePlayer):
     )
 
     round_four_mode = models.StringField(
+        choices=[
+            ["por respuesta", "Pago por Pregunta ($0.5 por cada suma correcta en Etapa 3)"],
+            ["torneo", "Torneo ($2 por cada suma correcta si resolviste más sumas correctas que el resto de los participantes en la Etapa 3. En caso contrario, recibirás $0)"]
+        ],
+        widget=widgets.RadioSelect
+    )
+
+    round_seven_mode = models.StringField(
         choices=[
             ["por respuesta", "Pago por Pregunta ($0.5 por cada suma correcta en Etapa 3)"],
             ["torneo", "Torneo ($2 por cada suma correcta si resolviste más sumas correctas que el resto de los participantes en la Etapa 3. En caso contrario, recibirás $0)"]

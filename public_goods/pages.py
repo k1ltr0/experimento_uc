@@ -97,6 +97,13 @@ class RoundSevenIntro(Page):
     pass
 
 
+class RoundSevenGame(Page):
+    form_model = "player"
+    form_fields = [
+        "round_seven_mode"
+    ]
+
+
 class RoundEightIntro(Page):
     pass
 
@@ -161,6 +168,7 @@ page_sequence = [
     WaitForGame,
 
     RoundSevenIntro,
+    RoundSevenGame,
     WaitForGame,
 
     RoundEightIntro,
