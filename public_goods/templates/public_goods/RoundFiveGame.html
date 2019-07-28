@@ -24,27 +24,27 @@
             <tr>
                 <td>1</td>
                 <td>Más alto</td>
-                <td><input type="text" /></td>
+                <td>{% formfield player.probabilities_round_five_0 label="porcentaje de probabilidad:" %}</td>
             </tr>
             <tr>
                 <td>2</td>
                 <td></td>
-                <td><input type="text" /></td>
+                <td>{% formfield player.probabilities_round_five_1 label="porcentaje de probabilidad:" %}</td>
             </tr>
             <tr>
                 <td>3</td>
                 <td></td>
-                <td><input type="text" /></td>
+                <td>{% formfield player.probabilities_round_five_2 label="porcentaje de probabilidad:" %}</td>
             </tr>
             <tr>
                 <td>4</td>
                 <td>Más bajo</td>
-                <td><input type="text" /></td>
+                <td>{% formfield player.probabilities_round_five_3 label="porcentaje de probabilidad:" %}</td>
             </tr>
             <tr>
                 <td></td>
                 <td><b>total:</b></td>
-                <td>100</td>
+                <td class="total" ></td>
             </tr>
         </table>
 
@@ -59,4 +59,42 @@
 
 {% next_button %}
 
+<script type="text/javascript">
+
+var total = 0;
+function validatePercentage() {
+    var probabilities = [
+        parseInt($("#id_probabilities_round_five_0").val()),
+        parseInt($("#id_probabilities_round_five_1").val()),
+        parseInt($("#id_probabilities_round_five_2").val()),
+        parseInt($("#id_probabilities_round_five_3").val())
+    ];
+
+    total = probabilities.reduce(function(accum, item) {
+        item = isNaN(item) ? 0:item;
+        return accum + item;
+    });
+
+    $(".total").html(total + "%");
+}
+
+$("#id_probabilities_round_five_0").on("keyup", validatePercentage);
+$("#id_probabilities_round_five_1").on("keyup", validatePercentage);
+$("#id_probabilities_round_five_2").on("keyup", validatePercentage);
+$("#id_probabilities_round_five_3").on("keyup", validatePercentage);
+$(document).ready(validatePercentage);
+
+$("#form").on("submit", function (e) {
+
+    if (total !== 100) {
+        e.stopPropagation();
+        e.preventDefault();
+        alert("debe sumar 100 en las probabilidades");
+
+        setTimeout(function() {
+            $(".btn-primary").removeAttr("disabled");
+        }, 1000);
+    }
+});
+</script>
 {% endblock %}

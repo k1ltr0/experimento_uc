@@ -71,12 +71,11 @@ class Player(BasePlayer):
     correct_answers_round_one = models.IntegerField(initial=0)
     correct_answers_round_two = models.IntegerField(initial=0)
     correct_answers_round_three = models.IntegerField(initial=0)
-    # probabilities_round_five = [
-    #     models.IntegerField(initial=0),
-    #     models.IntegerField(initial=0),
-    #     models.IntegerField(initial=0),
-    #     models.IntegerField(initial=0)
-    # ]
+
+    probabilities_round_five_0 = models.IntegerField(initial=25)
+    probabilities_round_five_1 = models.IntegerField(initial=25)
+    probabilities_round_five_2 = models.IntegerField(initial=25)
+    probabilities_round_five_3 = models.IntegerField(initial=25)
 
     round_two_mode = models.StringField(
         choices=[

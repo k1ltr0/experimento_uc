@@ -71,7 +71,13 @@ class RoundFourGame(Page):
 
 
 class RoundFiveGame(Page):
-    pass
+    form_model = "player"
+    form_fields = [
+        "probabilities_round_five_0",
+        "probabilities_round_five_1",
+        "probabilities_round_five_2",
+        "probabilities_round_five_3"
+    ]
 
 
 class RoundSixIntro(Page):
