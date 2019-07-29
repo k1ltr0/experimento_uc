@@ -123,7 +123,7 @@ class RoundEightGame(Page):
             )
 
         return {
-            "ranking": self.subsession.get_ranking()
+            "ranking": self.subsession.get_ranking(self.player)
         }
 
 

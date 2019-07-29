@@ -21,7 +21,7 @@
                 {% for p in v %}
                 <tr>
                     <td>{{ forloop.counter }}</td>
-                    <td>{{ p.player }}</td>
+                    <td>Jugador {{ p.player }}{% if p.me %} (yo){% endif %}</td>
                     <td>{{ p.answers }}</td>
                 </tr>
                 {% endfor %}

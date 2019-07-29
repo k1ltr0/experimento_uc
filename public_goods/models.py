@@ -13,7 +13,7 @@ import random
 
 class Constants(BaseConstants):
     name_in_url = "public_goods"
-    players_per_group = 2
+    players_per_group = 4
     num_rounds = 1
     endowment = c(100)
     multiplier = 2
@@ -52,21 +52,25 @@ class Subsession(BaseSubsession):
             random.choice(others).correct_answers_round_three
         return player.better_or_not
 
-    def get_ranking(self):
+    def get_ranking(self, player):
 
         round_one_ranking = []
         round_two_ranking = []
         round_three_ranking = []
 
         for p in self.get_players():
+            me = False
+            if p.id == player.id:
+                me = True
+
             round_one_ranking.append(
-                {"player": p.id, "answers": p.correct_answers_round_one}
+                {"player": p.id_in_group, "answers": p.correct_answers_round_one, "me": me}
             )
             round_two_ranking.append(
-                {"player": p.id, "answers": p.correct_answers_round_two}
+                {"player": p.id_in_group, "answers": p.correct_answers_round_two, "me": me}
             )
             round_three_ranking.append(
-                {"player": p.id, "answers": p.correct_answers_round_three}
+                {"player": p.id_in_group, "answers": p.correct_answers_round_three, "me": me}
             )
 
         round_one_ranking = sorted(round_one_ranking, key=lambda i: i["answers"])
