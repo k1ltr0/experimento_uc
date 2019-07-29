@@ -94,7 +94,7 @@ class RoundSixIntro(Page):
 
 
 class RoundSevenIntro(Page):
-    pass
+    form_model = "player"
 
 
 class RoundSevenGame(Page):
@@ -105,7 +105,26 @@ class RoundSevenGame(Page):
 
 
 class RoundEightIntro(Page):
-    pass
+    form_model = "player"
+    form_fields = [
+        "probabilities_round_eight_0",
+        "probabilities_round_eight_1",
+        "probabilities_round_eight_2",
+        "probabilities_round_eight_3"
+    ]
+
+
+class RoundEightGame(Page):
+    form_model = "player"
+    def vars_for_template(self):
+        if self.player.round_selected_for_payment == 0:
+            self.player.round_selected_for_payment = random.choice(
+                [1,2,3,4,5,6,7,8]
+            )
+
+        return {
+            "ranking": self.subsession.get_ranking()
+        }
 
 
 class RoundNineIntro(Page):
@@ -172,6 +191,7 @@ page_sequence = [
     WaitForGame,
 
     RoundEightIntro,
+    RoundEightGame,
     WaitForGame,
 
     RoundNineIntro,

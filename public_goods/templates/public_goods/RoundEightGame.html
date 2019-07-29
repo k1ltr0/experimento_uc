@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Etapa 8{% endblock %}
+
+{% block content %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+
+        <h3>Creencia sobre Etapa 1</h3>
+        <p>Se ha seleccionado al azar la etapa <b>{{ player.round_selected_for_payment }}</b> para pagar</p>
+        {% for k, v in ranking.items %}
+            <h4>Ranking para el round {{ k }}:</h4>
+            <table class="table">
+                <tr>
+                    <th>Lugar</th>
+                    <th>Jugador</th>
+                    <th>Respuestas</th>
+                </tr>
+                {% for p in v %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ p.player }}</td>
+                    <td>{{ p.answers }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% endfor %}
+    </div>
+</div>
+
+{% next_button %}
+
+{% endblock %}

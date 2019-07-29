@@ -52,6 +52,35 @@ class Subsession(BaseSubsession):
             random.choice(others).correct_answers_round_three
         return player.better_or_not
 
+    def get_ranking(self):
+
+        round_one_ranking = []
+        round_two_ranking = []
+        round_three_ranking = []
+
+        for p in self.get_players():
+            round_one_ranking.append(
+                {"player": p.id, "answers": p.correct_answers_round_one}
+            )
+            round_two_ranking.append(
+                {"player": p.id, "answers": p.correct_answers_round_two}
+            )
+            round_three_ranking.append(
+                {"player": p.id, "answers": p.correct_answers_round_three}
+            )
+
+        round_one_ranking = sorted(round_one_ranking, key=lambda i: i["answers"])
+        round_two_ranking = sorted(round_two_ranking, key=lambda i: i["answers"])
+        round_three_ranking = sorted(
+            round_three_ranking, key=lambda i: i["answers"]
+        )
+
+        return {
+            "1": round_one_ranking,
+            "2": round_two_ranking,
+            "3": round_three_ranking
+        }
+
 
 class Group(BaseGroup):
     total_contribution = models.CurrencyField()
@@ -87,12 +116,18 @@ class Player(BasePlayer):
     probabilities_round_five_2 = models.IntegerField(initial=25)
     probabilities_round_five_3 = models.IntegerField(initial=25)
 
-
-    better_or_not = False
+    better_or_not = models.BooleanField(initial=False)
     probabilities_round_six_0 = models.IntegerField(initial=25)
     probabilities_round_six_1 = models.IntegerField(initial=25)
     probabilities_round_six_2 = models.IntegerField(initial=25)
     probabilities_round_six_3 = models.IntegerField(initial=25)
+
+    probabilities_round_eight_0 = models.IntegerField(initial=25)
+    probabilities_round_eight_1 = models.IntegerField(initial=25)
+    probabilities_round_eight_2 = models.IntegerField(initial=25)
+    probabilities_round_eight_3 = models.IntegerField(initial=25)
+
+    round_selected_for_payment = models.IntegerField(initial=0)
 
     round_two_mode = models.StringField(
         choices=[
