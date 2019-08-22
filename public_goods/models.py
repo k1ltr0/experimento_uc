@@ -13,7 +13,7 @@ import random
 
 class Constants(BaseConstants):
     name_in_url = "public_goods"
-    players_per_group = 4
+    players_per_group = 2
     num_rounds = 1
     endowment = c(100)
     multiplier = 2
@@ -143,16 +143,29 @@ class Player(BasePlayer):
 
     round_four_mode = models.StringField(
         choices=[
-            ["por respuesta", "Pago por Pregunta ($0.5 por cada suma correcta en Etapa 3)"],
-            ["torneo", "Torneo ($2 por cada suma correcta si resolviste más sumas correctas que el resto de los participantes en la Etapa 3. En caso contrario, recibirás $0)"]
+            ["por respuesta", (
+                "1. Pago por Pregunta ($250 por cada suma correcta en Etapa 3)"
+            )],
+            ["torneo", (
+                "2. Torneo ($1000 por cada suma correcta si resolviste más "
+                "sumas correctas que el resto de los participantes en la "
+                "Etapa 3. En caso contrario, recibirás $0)"
+            )]
         ],
         widget=widgets.RadioSelect
     )
 
     round_seven_mode = models.StringField(
         choices=[
-            ["por respuesta", "Pago por Pregunta ($0.5 por cada suma correcta en Etapa 3)"],
-            ["torneo", "Torneo ($2 por cada suma correcta si resolviste más sumas correctas que el resto de los participantes en la Etapa 3. En caso contrario, recibirás $0)"]
+            ["por respuesta", (
+                "1. Tarifa por Pregunta ($250 por cada suma correcta en la "
+                "Etapa 3)."
+            )],
+            ["torneo", (
+                "2. Torneo pagado ($1.000 por cada suma correcta SI resolviste"
+                " más sumas que los otros miembros del grupo en la Tarea 3, y "
+                "$ 0 de lo contrario)."
+            )]
         ],
         widget=widgets.RadioSelect
     )

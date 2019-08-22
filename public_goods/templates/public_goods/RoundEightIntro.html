@@ -1,22 +1,33 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
-{% block title %}Etapa 8{% endblock %}
+{% block title %}Etapa 8 - Creencia sobre Etapa 1{% endblock %}
 
 {% block content %}
 
 <div class="card bg-light instructions">
     <div class="card-body">
 
-        <h3>Creencia sobre Etapa 1</h3>
-        <p>
-            A continuación, le preguntaremos cómo crees que fue tu desempeño en la Etapa 1 en comparación con el desempeño de los otros tres participantes de tu grupo.
-            En la Etapa 1 obtuviste uno de los cuatro puestos dentro de tu grupo, siendo 1 el puesto más alto y 4 fue el más bajo.
-        </p>
-        <p>Recuerda que en la Tarea 1, resolviste correctamente {{ player.correct_answers_round_one }} suma (s).</p>
+        <h3>Instrucciones</h3>
 
-        <p>Para cada uno de los siguientes puestos, ¿cuál es el porcentaje de probabilidad (o probabilidad de 100) de que creas que obtuviste ese puesto en la Etapa 1?</p>
-        <p>Ingresa un número entre 0 y 100 para cada puesto (no ingresos un signo de porcentaje). Los números deben sumar 100.</p>
+        <p>
+            A continuación, te preguntaremos cómo crees que fue tu desempeño en
+            la Etapa 1 en comparación con el desempeño de los otros tres
+            participantes de tu grupo. En la Etapa 1 obtuviste uno de los
+            cuatro puestos dentro de tu grupo, siendo 1 el puesto más alto y 4
+            el más bajo.
+        </p>
+        <p><b>
+            Recuerda que en la Tarea 1, resolviste correctamente {{ player.correct_answers_round_one }} suma (s).
+        </b></p>
+        <p>
+            Para cada uno de los siguientes puestos, ¿cuál es la probabilidad
+            (de 0 a 100) de que creas que obtuviste ese puesto en la Etapa 1?
+        </p>
+        <p>
+            Ingresa un número entre 0 y 100 para cada puesto (no ingresos un
+            signo de porcentaje). Los números deben sumar 100.
+        </p>
 
         <table class="table" >
             <tr>
@@ -51,18 +62,16 @@
             </tr>
         </table>
 
-
         <p>
-            Si la Etapa 8 es elegida al azar para el pago,
-            se te pagará según la precisión de tu creencia según la siguiente fórmula:
+            Si la Etapa 8 es elegida al azar para el pago, se te pagará según
+            la precisión de tu creencia según la siguiente fórmula:
         </p>
+        <p><img src="https://cdn.loadingplay.com/static/images/01529a03e6dc4c8be6a7b78d8eeb30a8_Screen_Shot__at_.34"/></p>
         <p>
-            20 - 10k=14(1{rank=k)-0.01 x Pk}2.
-        </p>
-        <p>
-            Si bien esta fórmula puede parecer complicada, lo que significa es simple: en promedio,
-            se paga más cuando informas honestamente tus mejores estimaciones de las probabilidades de tu posición.
-            El rango de pago es de $0 - $20.
+            Si bien esta fórmula puede parecer complicada, lo que significa es
+            simple: en promedio, se paga más cuando informas honestamente tus
+            mejores estimaciones de las probabilidades de tu posición. El rango
+            de pago es de $0 - $10.000
         </p>
     </div>
 </div>

@@ -1,147 +1,31 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
-{% block title %}Etapa 6{% endblock %}
+{% block title %}Etapa 6 - Creencia sobre la Etapa 3 con información revelada.{% endblock %}
 
 {% block content %}
 
 <div class="card bg-light instructions">
     <div class="card-body">
 
-        <h3>Creencia sobre la Etapa 2 con información relevada.</h3>
+        <h3>Instrucciones.</h3>
         <p>
-            Ahora se te informará sobre tu desempeño en la Tarea 3 en comparación a uno de los otros participantes del grupo.
-            Si recibes el mensaje <b>"Estás rankeado mejor"</b>, significa que tu desempeño en la Etapa 3 fue mejor
-            (es decir, tu puesto está más cercano a 1) que el desempeño del otro participante. Si recibes el mensaje
-            <b>"Estás clasificado más bajo"</b>, significa que tu desempeño fue inferior al del otro participante.
+            Ahora se te informará sobre tu desempeño en la Tarea 3 en
+            comparación a uno de los otros participantes de tu grupo.
         </p>
-        <p><b>{% if isbetter %}Estás rankeado mejor{% else %}Estás clasificado más bajo{% endif %}</b></p>
         <p>
-            Ahora te volvemos a preguntar cómo crees que fue tu desempeño en la Etapa 3 en comparación con el desempeño
-            de los otros tres participantes de tu grupo.
-            A continuación, te mostramos tu creencia declarada en la Etapa 5 antes de haber recibido la información anterior:
+            Si recibes el mensaje <b>"Estás rankeado mejor"</b>, significa que tu
+            desempeño en la Etapa 3 fue mejor que el desempeño del otro
+            participante. Es decir, tu puesto está más cercano a 1.
         </p>
-
-        <table class="table" >
-            <tr>
-                <th>Lugar</th>
-                <th>Probabilidad</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>{{ player.probabilities_round_five_0 }}</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>{{ player.probabilities_round_five_1 }}</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>{{ player.probabilities_round_five_2 }}</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>{{ player.probabilities_round_five_3 }}</td>
-            </tr>
-        </table>
-
-        {% if isbetter %}
-            <p>Ten en cuenta que si fuiste rankeado mejor que algún otro miembro del grupo, significa que no obtuviste el puesto más bajo (es decir, cuarto lugar) y, por lo tanto, te ubicaste en el puesto 1, 2 o 3, siendo 1 el más alto. .</p>
-        {% else %}
-            <p>Ten en cuenta que si fuiste rankeado más bajo que algún otro miembro del grupo, significa que no obtuviste el puesto más alto (es decir, primer lugar) y, por lo tanto, te ubicaste en el puesto 2, 3 o 4, siendo 2 el más alto.</p>
-        {% endif %}
-
-        <p>Recuerda que en la Etapa 3, resolviste correctamente {{ player.correct_answers_round_three }} suma (s).</p>
-        <p>Para cada uno de los siguientes puestos, ¿cuál es el porcentaje de probabilidad (de 0 a 100) de que creas que obtuviste ese lugar en la Etapa 3?</p>
-        <p>Ingresa un número entre 0 y 100 para cada lugar (no ingrese un signo de porcentaje). Los números en todos los lugares deben sumar hasta 100.</p>
-
-        <table class="table" >
-            <tr>
-                <th>Lugar</th>
-                <th>Categoría</th>
-                <th>Probabilidad</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Más alto</td>
-                <td>{% formfield player.probabilities_round_six_0 label="porcentaje de probabilidad:" %}</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td></td>
-                <td>{% formfield player.probabilities_round_six_1 label="porcentaje de probabilidad:" %}</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td></td>
-                <td>{% formfield player.probabilities_round_six_2 label="porcentaje de probabilidad:" %}</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Más bajo</td>
-                <td>{% formfield player.probabilities_round_six_3 label="porcentaje de probabilidad:" %}</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><b>total:</b></td>
-                <td class="total" ></td>
-            </tr>
-        </table>
-
-
         <p>
-            Si la Etapa 6 es elegida al azar para el pago, se te pagará según la precisión de tu creencia según
-            la siguiente fórmula:
-        <p><b>20 - 10k=14(1{rank=k)-0.01 x Pk}2.</b></p>
-        <p>
-            Si bien esta fórmula puede parecer complicada, lo que significa es simple:
-            en promedio, se paga más cuando informas honestamente tus mejores estimaciones de las probabilidades de tu posición.
-            El rango de pago es de $0 - $20.
+            Si recibes el mensaje <b>"Estás clasificado más bajo"</b>, significa que
+            tu desempeño fue inferior al del otro participante.
         </p>
 
     </div>
 </div>
 
-
 {% next_button %}
-<script type="text/javascript">
-
-var total = 0;
-function validatePercentage() {
-    var probabilities = [
-        parseInt($("#id_probabilities_round_six_0").val()),
-        parseInt($("#id_probabilities_round_six_1").val()),
-        parseInt($("#id_probabilities_round_six_2").val()),
-        parseInt($("#id_probabilities_round_six_3").val())
-    ];
-
-    total = probabilities.reduce(function(accum, item) {
-        item = isNaN(item) ? 0:item;
-        return accum + item;
-    });
-
-    $(".total").html(total + "%");
-}
-
-$("#id_probabilities_round_six_0").on("keyup", validatePercentage);
-$("#id_probabilities_round_six_1").on("keyup", validatePercentage);
-$("#id_probabilities_round_six_2").on("keyup", validatePercentage);
-$("#id_probabilities_round_six_3").on("keyup", validatePercentage);
-$(document).ready(validatePercentage);
-
-$("#form").on("submit", function (e) {
-
-    if (total !== 100) {
-        e.stopPropagation();
-        e.preventDefault();
-        alert("debe sumar 100 en las probabilidades");
-
-        setTimeout(function() {
-            $(".btn-primary").removeAttr("disabled");
-        }, 1000);
-    }
-});
-</script>
-
 
 {% endblock %}

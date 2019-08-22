@@ -70,6 +70,10 @@ class RoundFourGame(Page):
     form_fields = ["round_four_mode"]
 
 
+class RoundFiveIntro(Page):
+    pass
+
+
 class RoundFiveGame(Page):
     form_model = "player"
     form_fields = [
@@ -81,6 +85,10 @@ class RoundFiveGame(Page):
 
 
 class RoundSixIntro(Page):
+    pass
+
+
+class RoundSixGame(Page):
     form_model = "player"
     form_fields = [
         "probabilities_round_six_0",
@@ -91,7 +99,6 @@ class RoundSixIntro(Page):
 
     def vars_for_template(self):
         return {"isbetter": self.subsession.get_better_or_not(self.player)}
-
 
 class RoundSevenIntro(Page):
     form_model = "player"
@@ -180,10 +187,12 @@ page_sequence = [
     RoundFourGame,
     WaitForGame,
 
+    RoundFiveIntro,
     RoundFiveGame,
     WaitForGame,
 
     RoundSixIntro,
+    RoundSixGame,
     WaitForGame,
 
     RoundSevenIntro,

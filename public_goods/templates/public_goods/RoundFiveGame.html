@@ -1,19 +1,31 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
-{% block title %}Etapa 5{% endblock %}
+{% block title %}Etapa 5 - Creencia sobre desempeño en Etapa 3{% endblock %}
 
 {% block content %}
 
 <div class="card bg-light instructions">
     <div class="card-body">
 
-        <h3>Creencia sobre la Tarea 3</h3>
-        <p>A continuación, te preguntaremos sobre cómo crees que fue tu desempeño en la Etapa 3 en comparación con los otros tres participantes de este grupo. En la etapa 3, te ubicaste en uno de los cuatro lugares dentro de este grupo, siendo 1 el puesto más alto (es decir, si tu desempeño en la Etapa 1 fue mejor que el desempeño de los otros tres miembros del grupo) y 4 es el lugar más bajo.</p>
-        <p>Recuerda que en la Tarea 3, resolviste correctamente {{ player.correct_answers_round_three }} suma (s).</p>
-        <p>Para cada uno de los siguientes puestos, ¿cuál es el porcentaje de probabilidad (de 0 a 100) de que creas que obtuviste ese lugar en la Tarea 3?</p>
-        <p>Por ejemplo, si asignas un porcentaje de probabilidad de 15 a un puesto, significa que crees que es poco probable que te ubiques en ese lugar. Alternativamente, si le asignas una probabilidad de 77 a un puesto en particular, significas que crees que es muy probable que te ubiques en ese puesto.</p>
-        <p>Ingrese un número entre 0 y 100 para cada lugar (no ingrese un signo de porcentaje). Los números en todos los lugares deben sumar hasta 100.</p>
+        <p>
+            <b>Recuerda que en la Etapa 3, resolviste correctamente {{ player.correct_answers_round_three }} suma (s).</b>
+        </p>
+        <p>
+            Para cada uno de los siguientes lugares, ¿cuál es la probabilidad
+            (de 0 a 100) de que hayas obtenido ese lugar en la Etapa 3?
+        </p>
+        <p>
+            Por ejemplo, si les asignas un probabilidad de 15 a un puesto,
+            significa que crees que es poco probable que te ubiques en ese
+            lugar. Por el contrario, si le asignas una probabilidad de 77 a un
+            puesto en particular, significa que crees que es muy probable que
+            te ubiques en ese puesto.
+        </p>
+        <p>
+            Ingresa un número entre 0 y 100 para cada lugar (no ingreses el
+            signo de porcentaje). La suma de las probabilidades debe sumar 100.
+        </p>
 
         <table class="table" >
             <tr>
@@ -48,10 +60,19 @@
             </tr>
         </table>
 
-        <p>Si la Etapa 5 es elegida al azar para el pago, se te pagará según la precisión de tu creencia según la siguiente fórmula:</p>
-        <p><img src="https://cdn.loadingplay.com/static/images/cda996fbed2c8babe2a87c8870f2fa78_Screen_Shot__at_.33" />.</p>
-        <p>Si bien esta fórmula puede parecer complicada, lo que significa es simple: en promedio, se paga más cuando informas honestamente tus mejores estimaciones de las probabilidades de tu posición. El rango de pago es de $0 - $20.</p>
-
+        <p>
+            Si la Etapa 5 es elegida al azar para el pago, se te pagará según
+            la precisión de tu creencia según la siguiente fórmula:
+        </p>
+        <p>
+            <img src="https://cdn.loadingplay.com/static/images/01529a03e6dc4c8be6a7b78d8eeb30a8_Screen_Shot__at_.34" />
+        </p>
+        <p>
+            Si bien esta fórmula puede parecer complicada, lo que significa es
+            simple: en promedio, <b>se paga más cuando informas honestamente tus
+            mejores estimaciones de las probabilidades de tu posición</b>. El
+            rango de pago es de $0 - $10.000
+        </p>
 
     </div>
 </div>

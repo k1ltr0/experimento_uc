@@ -8,11 +8,15 @@
 <div class="card bg-light instructions">
     <div class="card-body">
 
-        <p>Recuerda que en la Etapa 3, resolviste correctamente {{ player.correct_answers_round_three }} suma (s).</p>
-
-        <p>Tu puesto relativo en la Etapa 3: Estás clasificado {% if player.better_or_not %}mejor{% else %}más bajo{% endif %}.</p>
-
-        <p>¿Qué esquema de pago te gustaría aplicar a la cantidad de problemas que resolviste en la Etapa 3?</p>
+        <p>
+            Recuerda que en la Etapa 3, resolviste correctamente {{ player.correct_answers_round_three }} suma (s).
+        </p>
+        <p>
+            Además estás clasificado {% if player.better_or_not %}mejor{% else %}más bajo{% endif %} que un participante de tu grupo.
+        </p>
+        <p>
+            ¿Qué esquema de pago te gustaría aplicar a la cantidad de problemas que resolviste en la Etapa 3?
+        </p>
 
         {% formfield player.round_seven_mode %}
 
