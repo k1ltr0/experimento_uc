@@ -13,7 +13,7 @@ import random
 
 class Constants(BaseConstants):
     name_in_url = "public_goods"
-    players_per_group = 2
+    players_per_group = 4
     num_rounds = 1
     endowment = c(100)
     multiplier = 2
