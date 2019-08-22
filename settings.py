@@ -12,7 +12,7 @@ SESSION_CONFIGS = [
 LANGUAGE_CODE = "en"
 REAL_WORLD_CURRENCY_CODE = "USD"
 USE_POINTS = True
-DEMO_PAGE_INTRO_HTML = ""
+DEMO_PAGE_INTRO_HTML = "vesion 0.0.9"
 ROOMS = [{"name": "my_room", "display_name": "my_room"}]
 
 ADMIN_USERNAME = "admin"
