@@ -13,7 +13,7 @@ import random
 
 class Constants(BaseConstants):
     name_in_url = "public_goods"
-    players_per_group = 2
+    players_per_group = 4
     num_rounds = 1
     endowment = c(100)
     multiplier = 2
@@ -90,6 +90,15 @@ class Group(BaseGroup):
     total_contribution = models.CurrencyField()
     individual_share = models.CurrencyField()
 
+    def get_best_round(self, players, field):
+        best = players[0]
+        for p in players:
+            if getattr(p, field) > getattr(best, field):
+                best = p
+            if getattr(p, field) == getattr(best, field):
+                best = random.choice([best, p])
+        return best
+
     def set_payoffs(self):
         # self.total_contribution = sum(
         #     [p.contribution for p in self.get_players()]
@@ -99,28 +108,41 @@ class Group(BaseGroup):
         #     Constants.players_per_group
         # )
         for p in self.get_players():
+
+            p.rounds_earnings = 0
             # p.payoff = (
             #     Constants.endowment - p.contribution
             # ) + self.individual_share
             p.final_round_selected = random.choice(range(1, 21))
-            p.round_selected_for_payment = random.choice([1,2,3,4,5,6,7,8])
+            # p.round_selected_for_payment = 4  # random.choice([1,2,3,4,5,6,7,8])
 
             if p.round_selected_for_payment == 1:
-                pass
-                # 1000 por suma si es el mejor
+                best = self.get_best_round(self.get_players(), "correct_answers_round_one")
+                if best == p:
+                    p.rounds_earnings = 1000 * p.correct_answers_round_one
             elif p.round_selected_for_payment == 2:
-                pass
                 # para etapa 1
                 # 250 por pago por respuesta o
                 # 1000 por pregunta si resulve mas que los demas
+                if p.round_two_mode == "torneo":
+                    best = self.get_best_round(self.get_players(), "correct_answers_round_two")
+                    if best == p:
+                        p.rounds_earnings = 1000 * p.correct_answers_round_two
+                else:
+                    p.rounds_earnings = 250 * p.correct_answers_round_two
             elif p.round_selected_for_payment == 3:
-                pass
                 # 250 por respuesta
+                p.rounds_earnings = 250 * p.correct_answers_round_three
             elif p.round_selected_for_payment == 4:
-                pass
                 # para etapa 3
                 # 250 por pago por respuesta o
                 # 1000 por pregunta si es el 1
+                if p.round_four_mode == "torneo":
+                    best = self.get_best_round(self.get_players(), "correct_answers_round_three")
+                    if best == p:
+                        p.rounds_earnings = 1000 * p.correct_answers_round_three
+                else:
+                    p.rounds_earnings = 250 * p.correct_answers_round_three
             elif p.round_selected_for_payment == 5:
                 pass
                 # segun formula
@@ -128,10 +150,15 @@ class Group(BaseGroup):
                 pass
                 # segun formula
             elif p.round_selected_for_payment == 7:
-                pass
                 # para etapa 3
                 # 250 por pago por respuesta o
                 # 1000 por pregunta si es el 1
+                if p.round_seven_mode == "torneo":
+                    best = self.get_best_round(self.get_players(), "correct_answers_round_three")
+                    if best == p:
+                        p.rounds_earnings = 1000 * p.correct_answers_round_three
+                else:
+                    p.rounds_earnings = 250 * p.correct_answers_round_three
             elif p.round_selected_for_payment == 8:
                 pass
                 # segun formula
@@ -150,7 +177,7 @@ class Group(BaseGroup):
                 if p.final_round_total == 5000:
                     p.final_round_win_lotery = "gana"
 
-            p.payoff = p.final_round_total
+            p.payoff = p.final_round_total + p.rounds_earnings
 
 
 class Player(BasePlayer):
@@ -187,33 +214,36 @@ class Player(BasePlayer):
     final_round_win_lotery = models.StringField(initial="no gana")
     final_round_total = models.IntegerField(initial=0)
 
-    final_round_1 = models.StringField(choices=["$200", "loteria"], widget=widgets.RadioSelect)
-    final_round_2 = models.StringField(choices=["$400", "loteria"], widget=widgets.RadioSelect)
-    final_round_3 = models.StringField(choices=["$600", "loteria"], widget=widgets.RadioSelect)
-    final_round_4 = models.StringField(choices=["$800", "loteria"], widget=widgets.RadioSelect)
-    final_round_5 = models.StringField(choices=["$1.000", "loteria"], widget=widgets.RadioSelect)
-    final_round_6 = models.StringField(choices=["$1.200", "loteria"], widget=widgets.RadioSelect)
-    final_round_7 = models.StringField(choices=["$1.400", "loteria"], widget=widgets.RadioSelect)
-    final_round_8 = models.StringField(choices=["$1.600", "loteria"], widget=widgets.RadioSelect)
-    final_round_9 = models.StringField(choices=["$1.800", "loteria"], widget=widgets.RadioSelect)
-    final_round_10 = models.StringField(choices=["$2.000", "loteria"], widget=widgets.RadioSelect)
-    final_round_11 = models.StringField(choices=["$2.200", "loteria"], widget=widgets.RadioSelect)
-    final_round_12 = models.StringField(choices=["$2.400", "loteria"], widget=widgets.RadioSelect)
-    final_round_13 = models.StringField(choices=["$2.600", "loteria"], widget=widgets.RadioSelect)
-    final_round_14 = models.StringField(choices=["$2.800", "loteria"], widget=widgets.RadioSelect)
-    final_round_15 = models.StringField(choices=["$3.000", "loteria"], widget=widgets.RadioSelect)
-    final_round_16 = models.StringField(choices=["$3.200", "loteria"], widget=widgets.RadioSelect)
-    final_round_17 = models.StringField(choices=["$3.400", "loteria"], widget=widgets.RadioSelect)
-    final_round_18 = models.StringField(choices=["$3.600", "loteria"], widget=widgets.RadioSelect)
-    final_round_19 = models.StringField(choices=["$3.800", "loteria"], widget=widgets.RadioSelect)
-    final_round_20 = models.StringField(choices=["$4.000", "loteria"], widget=widgets.RadioSelect)
+    final_round_1 = models.StringField(choices=["$200", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_2 = models.StringField(choices=["$400", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_3 = models.StringField(choices=["$600", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_4 = models.StringField(choices=["$800", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_5 = models.StringField(choices=["$1.000", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_6 = models.StringField(choices=["$1.200", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_7 = models.StringField(choices=["$1.400", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_8 = models.StringField(choices=["$1.600", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_9 = models.StringField(choices=["$1.800", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_10 = models.StringField(choices=["$2.000", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_11 = models.StringField(choices=["$2.200", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_12 = models.StringField(choices=["$2.400", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_13 = models.StringField(choices=["$2.600", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_14 = models.StringField(choices=["$2.800", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_15 = models.StringField(choices=["$3.000", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_16 = models.StringField(choices=["$3.200", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_17 = models.StringField(choices=["$3.400", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_18 = models.StringField(choices=["$3.600", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_19 = models.StringField(choices=["$3.800", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+    final_round_20 = models.StringField(choices=["$4.000", "loteria"], widget=widgets.RadioSelect, initial="loteria")
+
+    rounds_earnings = models.IntegerField(initial=0)
 
     round_two_mode = models.StringField(
         choices=[
             ["por respuesta", "Pago por respuesta ($250 por cada suma correcta)"],
             ["torneo", "Torneo ($1000 por cada suma correcta si resuelves más sumas correctas que los otros miembros en la Tarea 1, en caso contrario recibes $0)."]
         ],
-        widget=widgets.RadioSelect
+        widget=widgets.RadioSelect,
+        initial="por respuesta"
     )
 
     round_four_mode = models.StringField(
@@ -227,7 +257,8 @@ class Player(BasePlayer):
                 "Etapa 3. En caso contrario, recibirás $0)"
             )]
         ],
-        widget=widgets.RadioSelect
+        widget=widgets.RadioSelect,
+        initial="por respuesta"
     )
 
     round_seven_mode = models.StringField(
@@ -240,7 +271,8 @@ class Player(BasePlayer):
                 "2. Torneo pagado ($1.000 por cada suma correcta SI resolviste"
                 " más sumas que los otros miembros del grupo en la Tarea 3, y "
                 "$ 0 de lo contrario)."
-            )]
+            )],
         ],
-        widget=widgets.RadioSelect
+        widget=widgets.RadioSelect,
+        initial="por respuesta"
     )
