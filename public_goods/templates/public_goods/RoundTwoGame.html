@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<style>.debug-info { display: none }</style>
+{% include "./general.style.html" %}
 
 {% include Constants.answerinput %}
 {% formfield player.correct_answers_round_two label="Respuestas correctas:" %}
