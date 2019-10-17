@@ -5,7 +5,7 @@ SESSION_CONFIGS = [
     {
         "name": "my_session",
         "display_name": "my_session",
-        "num_demo_participants": 4,
+        "num_demo_participants": 2,
         "app_sequence": ["public_goods"],
     }
 ]

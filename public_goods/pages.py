@@ -8,6 +8,11 @@ class Welcome(Page):
     pass
 
 
+class ParticipantCode(Page):
+    form_model = "player"
+    form_fields = ["participant_code"]
+
+
 class PracticeIntro(Page):
     pass
 
@@ -135,6 +140,29 @@ class RoundEightGame(Page):
 
 
 class RoundNineIntro(Page):
+    form_model = "player"
+    form_fields = [
+        "final_round_1",
+        "final_round_2",
+        "final_round_3",
+        "final_round_4",
+        "final_round_5",
+        "final_round_6",
+        "final_round_7",
+        "final_round_8",
+        "final_round_9",
+        "final_round_10",
+        "final_round_11",
+        "final_round_12",
+        "final_round_13",
+        "final_round_14",
+        "final_round_15",
+        "final_round_16",
+        "final_round_17",
+        "final_round_18",
+        "final_round_19",
+        "final_round_20"
+    ]
     pass
 
 
@@ -156,14 +184,21 @@ class ResultsWaitPage(WaitPage):
 
 
 class Results(Page):
+    form_model = "player"
     def vars_for_template(self):
+        self.group.set_payoffs()
         # return {"total_earnings":
         # self.group.total_contribution * Constants.multiplier}
         return {"total_earnings": 1}
 
 
+class Form(Page):
+    pass
+
+
 page_sequence = [
     Welcome,
+    ParticipantCode,
     PracticeIntro,
     WaitForGame,
     PracticeGame,
@@ -207,5 +242,6 @@ page_sequence = [
     WaitForGame,
 
     ResultsWaitPage,
-    Results
+    Results,
+    Form
 ]

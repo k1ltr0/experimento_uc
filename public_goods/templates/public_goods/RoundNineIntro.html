@@ -1,63 +1,137 @@
 {% extends "global/Page.html" %}
 {% load otree %}
 
-{% block title %}Introduction{% endblock %}
+{% block title %}Etapa 9{% endblock %}
 
 {% block content %}
+
+<style>
+.col-form-label {
+    display: none;
+}
+
+.controls li {
+    float: left;
+    width: 100px;
+}
+</style>
 
 <div class="card bg-light instructions">
     <div class="card-body">
 
         <h3>Etapa Final</h3>
         <p>
-            Al final de la sesión, recibirás el pago por esta Etapa Final además de recibir el pago por una de
-            las primeras ocho etapas. Para esta etapa, se solicita que elijas entre la Opción A y la Opción B en cada
-            una de las 10 alternativas en la siguiente pantalla. Después de que hagas tus elecciones, se elegirá una
-            alternativa al azar para determinar tu pago.
+            Al final de la sesión, recibirás el pago por esta Etapa Final además
+            de recibir el pago por una de las primeras ocho etapas.
         </p>
         <p>
-            En cada alternativa, si eliges la Opción A, recibirás $5 con 50% de probabilidad y $1 con 50% de
-            probabilidad. El pago por la Opción A es el mismo en cada una de las alternativas.
+            En esta última etapa tienes que elegir entre jugar a la lotería o
+            recibir un pago seguro. Te preguntaremos 20 veces si prefieres el
+            dinero o la lotería. Todas las veces la lotería será la misma, pero
+            la cantidad de dinero será diferente. Después de haber respondido
+            los 20 casos, una de estas alternativas será elegida al azar para
+            pagarte.
         </p>
         <p>
-            Si eliges la opción B, recibirás una cantidad fija. Sin embargo, la cantidad que recibirás bajo la
-            Opción B varía según las alternativas, desde $ 1.25 en la Alternativa 1 hasta $ 3.50 en la Alternativa 10.
+            Si en el caso seleccionado preferiste el pago seguro, recibirás el
+            monto declarado.
         </p>
         <p>
-            Para cada alternativa en la siguiente pantalla, se te pedirá que elijas la opción A o la B. Para tu pago,
-            se elegirá una alternativa al azar. Si eliges la Opción B para la alternativa elegida, recibirás el monto
-            de la Opción B para esa alternativa. Si eliges la Opción A, con un 50% de probabilidad, recibirás $ 5 y
-            un 50% de probabilidad recibirás $ 1.
+            Si en el caso seleccionado elegiste la lotería, se te pagará lo que
+            ganes en la lotería. Si ganas la lotería, se te dará el dinero al
+            final de la sesión.
         </p>
-        <p>Por ejemplo, considera las siguientes dos alternativas:</p>
+        <p>
+            En la lotería, ganarás $5.000 pesos chilenos con 50% de probabilidad,
+            y con 50% de probabilidad recibirás nada.
+        </p>
 
         <table class="table">
             <tr>
                 <th>Alternativa</th>
-                <th>Opción A</th>
-                <th>Opción B</th>
+                <th>Opciones</th>
             </tr>
             <tr>
                 <td>1</td>
-                <td>$5 with 50% chance, and $1 with 50% chance</td>
-                <td>$1.25</td>
+                <td>{% formfield player.final_round_1 %}</td>
             </tr>
             <tr>
                 <td>2</td>
-                <td>$5 with 50% chance, and $1 with 50% chance</td>
-                <td>$3.00</td>
+                <td>{% formfield player.final_round_2 %}</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>{% formfield player.final_round_3 %}</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>{% formfield player.final_round_4 %}</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>{% formfield player.final_round_5 %}</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>{% formfield player.final_round_6 %}</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>{% formfield player.final_round_7 %}</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>{% formfield player.final_round_8 %}</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>{% formfield player.final_round_9 %}</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>{% formfield player.final_round_10 %}</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>{% formfield player.final_round_11 %}</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>{% formfield player.final_round_12 %}</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>{% formfield player.final_round_13 %}</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>{% formfield player.final_round_14 %}</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>{% formfield player.final_round_15 %}</td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td>{% formfield player.final_round_16 %}</td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <td>{% formfield player.final_round_17 %}</td>
+            </tr>
+            <tr>
+                <td>18</td>
+                <td>{% formfield player.final_round_18 %}</td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td>{% formfield player.final_round_19 %}</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>{% formfield player.final_round_20 %}</td>
             </tr>
         </table>
-
-        <p>
-            Como puedes ver, la Opción A es la misma para ambas alternativas. Sin embargo, la opción B difiere para
-            las dos alternativas. Si la Alternativa 1 es elegida para el pago, y eligiste la Opción A, entonces
-            recibirás $5 con 50% de probabilidad y $1 con 50% de probabilidad. Si la Alternativa 1 es elegida para
-            el pago, y elegiste la Opción B, entonces recibirás $ 1.25.
-        </p>
-        <p>Haz clic en Siguiente para ver las 10 opciones y tomar tus decisiones.</p>
-
-
     </div>
 </div>
 

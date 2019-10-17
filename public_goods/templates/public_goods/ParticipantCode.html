@@ -1,0 +1,12 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}Código de participante{% endblock %}
+
+{% block content %}
+
+{% formfield player.participant_code label="Código de participante:" %}
+
+{% next_button %}
+
+{% endblock %}
